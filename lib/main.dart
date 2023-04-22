@@ -5,5 +5,5 @@ import 'app.dart';
 
 void main() {
   setupDependencyInjection();
-  runApp( MyApp());
+  runApp(const MyApp());
 }
