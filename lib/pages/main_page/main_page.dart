@@ -21,26 +21,34 @@ class _MyHomePageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Text("Choose your value"),
-            MainCardCurrency(currrencyCode: CodeEnum.eur),
-            // BlocProvider(
-            //   create: (context) => MainBloc(
-            //     currencyConnection,
-            //     CodeEnum.eur,
-            //   )..add(SendMainEvent()),
-            //   child: BlocBuilder<MainBloc, MainState>(
-            //     builder: (context, state) {
-            //       if(state is MainSuccessState) {
-            //         return ListView.builder(itemBuilder: itemBuilder)
-            //       }
-            //     },
-            //   ),
-            // )
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text("Choose your value"),
+              MainCardCurrency(
+                  iconAsset: 'assets/icons/europe_flag_circle.svg',
+                  title: "EUR",
+                  description: "Europeanian Union",
+                  currencyValue: "\$\$\$",
+                  date: "date")
+              // BlocProvider(
+              //   create: (context) => MainBloc(
+              //     currencyConnection,
+              //     CodeEnum.eur,
+              //   )..add(SendMainEvent()),
+              //   child: BlocBuilder<MainBloc, MainState>(
+              //     builder: (context, state) {
+              //       if(state is MainSuccessState) {
+              //         return ListView.builder(itemBuilder: itemBuilder)
+              //       }
+              //     },
+              //   ),
+              // )
+            ],
+          ),
         ),
       ),
     );

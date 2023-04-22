@@ -19,10 +19,15 @@ class DefaultTheme {
 
   ThemeData buildThemeData() {
     return ThemeData(
-        colorScheme: ColorScheme.fromSwatch(
-      primarySwatch: _primarySwatch,
-      backgroundColor: Colors.black,
-      brightness: Brightness.light,
-    ));
+      primaryColor: const Color(0xFFFF5300),
+      colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: _primarySwatch,
+        backgroundColor: const Color(0xFF121212),
+        cardColor: const Color(0x33333333),
+        errorColor: const Color(0xFFB00020),
+      ),
+      cardColor: const Color(0x33333333),
+      scaffoldBackgroundColor: const Color(0xFF121212),
+    );
   }
 }
