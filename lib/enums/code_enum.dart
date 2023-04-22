@@ -1,0 +1,4 @@
+enum CodeEnum {
+  usd,
+  eur
+}

@@ -5,7 +5,7 @@ abstract class MainState {}
 
 class MainLoadingState extends MainState {
   @override
-  String toString() => 'OutfitProgress {}';
+  String toString() => 'MainProgress {}';
 }
 
 class MainFailState extends MainState {
@@ -13,7 +13,7 @@ class MainFailState extends MainState {
   MainFailState(this.message);
 
   @override
-  String toString() => 'OutfitFail {message: $message}';
+  String toString() => 'MainFail {message: $message}';
 }
 
 class MainSuccessState extends MainState {
@@ -21,5 +21,5 @@ class MainSuccessState extends MainState {
   MainSuccessState(this.model);
 
   @override
-  String toString() => 'OutfitSuccess {model: $model}';
+  String toString() => 'MainSuccess {model: $model}';
 }
