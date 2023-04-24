@@ -8,7 +8,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:intl/intl.dart';
 
 class CurrencyPage extends StatelessWidget {
   final CurrencyConnection currencyConnection = GetIt.I<CurrencyConnection>();
@@ -43,6 +42,7 @@ class CurrencyPage extends StatelessWidget {
   }
 
   Widget _buildBody(CurrencyDto? model, BuildContext context) {
+    final isEuro = codeString.contains("EU");
     final List<Rates>? rates = model?.rates;
     final mediaQuery = MediaQuery.of(context).size;
 
@@ -61,6 +61,8 @@ class CurrencyPage extends StatelessWidget {
               child: CurrencyChart(
                 valueOfDays: valueOfDays,
                 rates: rates,
+                defaultMaxY: isEuro ? 4.75 : 4.45,
+                defaultMinY: isEuro ? 4.45 : 4.20,
               )),
         ),
         SizedBox(

@@ -16,7 +16,7 @@ class CurrencyTableItemShimmers extends StatelessWidget {
           children: [
             Container(
               height: 13,
-              width: 108.0,
+              width: 80.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(14.0),
                 color: Colors.grey.withOpacity(0.3),

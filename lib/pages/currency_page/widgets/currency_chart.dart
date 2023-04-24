@@ -7,18 +7,22 @@ import 'package:intl/intl.dart';
 class CurrencyChart extends StatelessWidget {
   final int valueOfDays;
   final List<Rates>? rates;
+  final double defaultMinY;
+  final double defaultMaxY;
   const CurrencyChart({
     super.key,
     required this.valueOfDays,
     required this.rates,
+    required this.defaultMinY,
+    required this.defaultMaxY
   });
 
   @override
   Widget build(BuildContext context) {
     final calculatorY = CalculatorY(
       rates: rates,
-      defaultMinY: rates?.first.mid ?? 4.5,
-      defaultMaxY: rates?.first.mid ?? 4.75,
+      defaultMinY: rates?.first.mid ?? defaultMinY,
+      defaultMaxY: rates?.first.mid ?? defaultMaxY,
     );
     const textStyle = TextStyle(
       fontSize: 10,

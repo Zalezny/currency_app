@@ -10,6 +10,7 @@ class CurrencyTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final reversedRates = rates?.reversed.toList() ?? null;
     const styles = TextStyle(
       fontFamily: 'Roboto',
       color: Color(0xFF5E6972),
@@ -46,12 +47,12 @@ class CurrencyTable extends StatelessWidget {
                     ),
                     physics: const ScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: rates?.length ?? valueOfShimmers,
+                    itemCount: reversedRates?.length ?? valueOfShimmers,
                     itemBuilder: (context, index) {
                       return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: rates != null
-                              ? CurrencyTableItem(rate: rates![index])
+                              ? CurrencyTableItem(rate: reversedRates![index])
                               : const CurrencyTableItemShimmers());
                     },
                   ),

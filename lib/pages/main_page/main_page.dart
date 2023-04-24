@@ -39,9 +39,10 @@ class _MyHomePageState extends State<MainPage> {
         return;
       } else {
         showDialog(
-            barrierDismissible: true,
-            context: context,
-            builder: (context) => const NetworkDialog());
+          barrierDismissible: false,
+          context: context,
+          builder: (context) => const NetworkDialog(),
+        );
       }
     });
     super.initState();
