@@ -6,6 +6,7 @@ import 'package:currency_app/custom_widgets/network_dialog.dart';
 import 'package:currency_app/enums/code_enum.dart';
 import 'package:currency_app/pages/main_page/bloc/main_bloc.dart';
 import 'package:currency_app/pages/main_page/widgets/main_card_currency.dart';
+import 'package:currency_app/pages/main_page/widgets/main_card_currency_shimmer.dart';
 import 'package:currency_app/web_api/connections/currency_connection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +24,7 @@ class MainPage extends StatefulWidget {
 class _MyHomePageState extends State<MainPage> {
   final CurrencyConnection currencyConnection = GetIt.I<CurrencyConnection>();
   StreamSubscription<ConnectivityResult>? subscription;
+  bool isAnimatedTextFinished = false;
 
   final listOfCurrencies = [
     CodeEnum.eur,
@@ -41,7 +43,7 @@ class _MyHomePageState extends State<MainPage> {
     });
     super.initState();
   }
-  
+
   @override
   void dispose() {
     subscription!.cancel();
@@ -65,12 +67,16 @@ class _MyHomePageState extends State<MainPage> {
                   fontSize: 30.0,
                   fontFamily: 'Roboto',
                 ),
-                child: AnimatedTextKit(
-                  isRepeatingAnimation: false,
-                  animatedTexts: [
-                    TypewriterAnimatedText(
-                      "Choose your currency",
-                      speed: const Duration(milliseconds: 100),
+                child: Row(
+                  children: [
+                    AnimatedTextKit(
+                      isRepeatingAnimation: false,
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                          "Choose your currency",
+                          speed: const Duration(milliseconds: 120),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -109,9 +115,19 @@ class _MyHomePageState extends State<MainPage> {
                         },
                       );
                     } else if (state is MainFailState) {
-                      return Text("tested");
+                      return Column(
+                        children: const [
+                          MainCardCurrencyShimmer(),
+                          MainCardCurrencyShimmer(),
+                        ],
+                      );
                     } else {
-                      return Text("test");
+                      return Column(
+                        children: const [
+                          MainCardCurrencyShimmer(),
+                          MainCardCurrencyShimmer(),
+                        ],
+                      );
                     }
                   },
                 ),
