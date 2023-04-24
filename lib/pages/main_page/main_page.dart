@@ -48,6 +48,7 @@ class _MyHomePageState extends State<MainPage> {
                   ],
                 ),
               ),
+              const SizedBox(height: 24),
               BlocProvider(
                 create: (context) => MainBloc(
                   currencyConnection,
