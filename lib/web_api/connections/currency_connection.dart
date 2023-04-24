@@ -33,8 +33,8 @@ class CurrencyConnection {
     return currenciesList;
   }
 
-  Future<CurrencyDto> getCurrencyByLast(CodeEnum code, int lastNum) async {
-    final uri = Config.currencyUrlByLast(_codeString(code), lastNum);
+  Future<CurrencyDto> getCurrencyByLast(String code, int lastNum) async {
+    final uri = Config.currencyUrlByLast(code, lastNum);
     final Response response = await apiService.makeApiGetRequest(uri);
 
     if (response.statusCode == 404) {

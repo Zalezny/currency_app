@@ -23,10 +23,10 @@ class DefaultTheme {
       colorScheme: ColorScheme.fromSwatch(
         primarySwatch: _primarySwatch,
         backgroundColor: const Color(0xFF121212),
-        cardColor: const Color(0x33333333),
+        cardColor: const Color(0xFF1E2630),
         errorColor: const Color(0xFFB00020),
       ),
-      cardColor: const Color(0x33333333),
+      cardColor: const Color(0xFF1E2630),
       scaffoldBackgroundColor: const Color(0xFF121212),
     );
   }
