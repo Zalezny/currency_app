@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:currency_app/custom_widgets/network_dialog.dart';
 import 'package:currency_app/enums/code_enum.dart';
 import 'package:currency_app/pages/main_page/bloc/main_bloc.dart';
 import 'package:currency_app/pages/main_page/widgets/main_card_currency.dart';
@@ -18,8 +22,31 @@ class MainPage extends StatefulWidget {
 
 class _MyHomePageState extends State<MainPage> {
   final CurrencyConnection currencyConnection = GetIt.I<CurrencyConnection>();
+  StreamSubscription<ConnectivityResult>? subscription;
 
-  final listOfCurrencies = [CodeEnum.eur, CodeEnum.usd];
+  final listOfCurrencies = [
+    CodeEnum.eur,
+    CodeEnum.usd,
+  ];
+
+  @override
+  void initState() {
+    subscription = Connectivity().onConnectivityChanged.listen((result) {
+      if (result == ConnectivityResult.mobile ||
+          result == ConnectivityResult.wifi) {
+        return;
+      } else {
+        showDialog(context: context, builder: (context) => NetworkDialog());
+      }
+    });
+    super.initState();
+  }
+  
+  @override
+  void dispose() {
+    subscription!.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
