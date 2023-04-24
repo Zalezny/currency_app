@@ -12,7 +12,7 @@ class CurrencyConnection {
   final ApiService apiService = GetIt.I<ApiService>();
 
   Future<CurrencyDto> getCurrency(CodeEnum code) async {
-    final uri = Config.currencyUrl(code);
+    final uri = Config.currencyUrl(_codeString(code));
     final Response response = await apiService.makeApiGetRequest(uri);
 
     if (response.statusCode == 404) {
@@ -21,5 +21,21 @@ class CurrencyConnection {
       final Map<String, dynamic> body = json.decode(response.body);
       return CurrencyDto.fromJson(body);
     }
+  }
+
+  Future<CurrencyDto> getCurrencyByLast(CodeEnum code, int lastNum) async {
+    final uri = Config.currencyUrlByLast(_codeString(code), lastNum);
+    final Response response = await apiService.makeApiGetRequest(uri);
+
+    if (response.statusCode == 404) {
+      throw CantFetchDataException();
+    } else {
+      final Map<String, dynamic> body = json.decode(response.body);
+      return CurrencyDto.fromJson(body);
+    }
+  }
+
+  String _codeString(CodeEnum code) {
+    return code == CodeEnum.eur ? "eur" : "usd";
   }
 }

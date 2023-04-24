@@ -16,7 +16,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       emit(MainLoadingState());
 
       try {
-        final model = await currencyConnection.getCurrency(code);
+        final model = await currencyConnection.getCurrencyByLast(code, 10);
         emit(MainSuccessState(model));
       } catch (e) {
         emit(MainFailState(e.toString()));

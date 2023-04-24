@@ -27,26 +27,36 @@ class _MyHomePageState extends State<MainPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text("Choose your value"),
-              MainCardCurrency(
-                  iconAsset: 'assets/icons/europe_flag_circle.svg',
-                  title: "EUR",
-                  description: "Europeanian Union",
-                  currencyValue: "\$\$\$",
-                  date: "date")
-              // BlocProvider(
-              //   create: (context) => MainBloc(
-              //     currencyConnection,
-              //     CodeEnum.eur,
-              //   )..add(SendMainEvent()),
-              //   child: BlocBuilder<MainBloc, MainState>(
-              //     builder: (context, state) {
-              //       if(state is MainSuccessState) {
-              //         return ListView.builder(itemBuilder: itemBuilder)
-              //       }
-              //     },
-              //   ),
-              // )
+              // Text("Choose your value"),
+              // MainCardCurrency(
+              //     iconAsset: 'assets/icons/europe_flag_circle.svg',
+              //     title: "EUR",
+              //     description: "Europeanian Union",
+              //     currencyValue: "\$\$\$",
+              //     date: "date")
+              BlocProvider(
+                create: (context) => MainBloc(
+                  currencyConnection,
+                  CodeEnum.eur,
+                )..add(SendMainEvent()),
+                child: BlocBuilder<MainBloc, MainState>(
+                  builder: (context, state) {
+                    if (state is MainSuccessState) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: state.model.rates!.length,
+                        itemBuilder: (context, index) {
+                          return Text(state.model.currency!);
+                        },
+                      );
+                    } else if (state is MainFailState) {
+                      return Text("tested");
+                    } else {
+                      return Text("test");
+                    }
+                  },
+                ),
+              )
             ],
           ),
         ),
