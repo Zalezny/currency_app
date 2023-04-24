@@ -24,7 +24,7 @@ class MainPage extends StatefulWidget {
 class _MyHomePageState extends State<MainPage> {
   final CurrencyConnection currencyConnection = GetIt.I<CurrencyConnection>();
   StreamSubscription<ConnectivityResult>? subscription;
-  bool isAnimatedTextFinished = false;
+  MainBloc? mainBloc;
 
   final listOfCurrencies = [
     CodeEnum.eur,
@@ -38,7 +38,10 @@ class _MyHomePageState extends State<MainPage> {
           result == ConnectivityResult.wifi) {
         return;
       } else {
-        showDialog(context: context, builder: (context) => NetworkDialog());
+        showDialog(
+            barrierDismissible: true,
+            context: context,
+            builder: (context) => const NetworkDialog());
       }
     });
     super.initState();
@@ -83,11 +86,12 @@ class _MyHomePageState extends State<MainPage> {
               ),
               const SizedBox(height: 24),
               BlocProvider(
-                create: (context) => MainBloc(
+                create: (context) => mainBloc = MainBloc(
                   currencyConnection,
                   listOfCurrencies,
                 )..add(SendMainEvent()),
                 child: BlocBuilder<MainBloc, MainState>(
+                  bloc: mainBloc,
                   builder: (context, state) {
                     if (state is MainSuccessState) {
                       return ListView.builder(
@@ -116,9 +120,15 @@ class _MyHomePageState extends State<MainPage> {
                       );
                     } else if (state is MainFailState) {
                       return Column(
-                        children: const [
-                          MainCardCurrencyShimmer(),
-                          MainCardCurrencyShimmer(),
+                        children: [
+                          const MainCardCurrencyShimmer(),
+                          const MainCardCurrencyShimmer(),
+                          ElevatedButton(
+                            onPressed: () {
+                              mainBloc!.add(SendMainEvent());
+                            },
+                            child: const Text("Refresh"),
+                          )
                         ],
                       );
                     } else {
