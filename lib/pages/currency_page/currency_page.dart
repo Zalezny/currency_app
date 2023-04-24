@@ -32,7 +32,9 @@ class CurrencyPage extends StatelessWidget {
                   if (state is CurrencySuccessState) {
                     return _buildSuccessBody(state.model, context);
                   } else if (state is CurrencyFailState) {
-                    return Text("test");
+                    return Text(
+                      "test",
+                    );
                   } else {
                     return Text("test");
                   }
@@ -44,6 +46,8 @@ class CurrencyPage extends StatelessWidget {
   Widget _buildSuccessBody(CurrencyDto model, BuildContext context) {
     final List<Rates> rates = model.rates!;
     final mediaQuery = MediaQuery.of(context).size;
+
+    final styles = TextStyle(fontFamily: 'Roboto', color: Color(0xFF5E6972));
 
     return Column(
       children: [
@@ -61,19 +65,61 @@ class CurrencyPage extends StatelessWidget {
               )),
         ),
         SizedBox(height: mediaQuery.height * 0.03),
-        Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            color: Theme.of(context).cardColor,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text("date:"), Text("rate:")],
+        Expanded(
+          child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              color: Theme.of(context).cardColor,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: 8.0,
+                        right: 8.0,
+                        left: 8.0,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("DATE", style: styles),
+                          Text("RATE", style: styles),
+                        ],
+                      ),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: ListView.separated(
+                        reverse: true,
+                        separatorBuilder: (context, index) => Divider(
+                          color: Colors.grey.withOpacity(0.3),
+                        ),
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: model.rates!.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(rates[index].effectiveDate!,
+                                    style: styles),
+                                Text(rates[index].mid.toString(),
+                                    style: styles),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  ],
                 ),
-              ],
-            )),
+              )),
+        ),
+        SizedBox(height: mediaQuery.height * 0.03)
       ],
     );
   }
