@@ -31,8 +31,8 @@ class CurrencyChart extends StatelessWidget {
         LineChartData(
           minX: 0,
           maxX: valueOfDays.toDouble() - 1,
-          minY: calculatorY.minY! - (calculatorY.minY! % 0.3),
-          maxY: calculatorY.maxY! + (calculatorY.minY! % 0.3),
+          minY: calculatorY.roundedMinY - 0.05,
+          maxY: calculatorY.roundedMaxY + 0.05,
           titlesData: FlTitlesData(
               show: true,
               topTitles: AxisTitles(),
