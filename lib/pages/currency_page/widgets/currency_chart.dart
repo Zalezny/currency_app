@@ -1,8 +1,7 @@
+import 'package:currency_app/pages/currency_page/classes/calculate_y.dart';
 import 'package:currency_app/web_api/dto/rates.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:intl/intl.dart';
 
 class CurrencyChart extends StatelessWidget {
@@ -16,6 +15,7 @@ class CurrencyChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final calculatorY = CalculatorY(rates: rates);
     const textStyle = TextStyle(
       fontSize: 10,
       color: Color(0xFF5E6972),
@@ -31,8 +31,8 @@ class CurrencyChart extends StatelessWidget {
         LineChartData(
           minX: 0,
           maxX: valueOfDays.toDouble() - 1,
-          minY: 4.50,
-          maxY: 4.80,
+          minY: calculatorY.minY! - (calculatorY.minY! % 0.3),
+          maxY: calculatorY.maxY! + (calculatorY.minY! % 0.3),
           titlesData: FlTitlesData(
               show: true,
               topTitles: AxisTitles(),
