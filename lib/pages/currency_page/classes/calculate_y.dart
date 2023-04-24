@@ -1,17 +1,23 @@
 import 'package:currency_app/web_api/dto/rates.dart';
 
 class CalculatorY {
-  final List<Rates> rates;
+  final List<Rates>? rates;
   late double _minY;
   late double _maxY;
-  CalculatorY({required this.rates}) {
-    _minY = rates.first.mid!;
-    _maxY = rates.first.mid!;
-    _calculate();
+  final double defaultMaxY;
+  final double defaultMinY;
+  CalculatorY({
+    required this.rates,
+    required this.defaultMaxY,
+    required this.defaultMinY,
+  }) {
+    _minY = defaultMinY;
+    _maxY = defaultMaxY;
+    if(rates != null) _calculate();
   }
 
   void _calculate() {
-    for (final rate in rates) {
+    for (final rate in rates!) {
       if (rate.mid! > _maxY) {
         _maxY = rate.mid!;
       }
@@ -32,6 +38,7 @@ class CalculatorY {
   double get roundedMinY {
     return (_minY / 0.05).roundToDouble() * 0.05;
   }
+
   double get roundedMaxY {
     return (_maxY / 0.05).roundToDouble() * 0.05;
   }

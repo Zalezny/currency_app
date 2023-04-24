@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 
 class CurrencyChart extends StatelessWidget {
   final int valueOfDays;
-  final List<Rates> rates;
+  final List<Rates>? rates;
   const CurrencyChart({
     super.key,
     required this.valueOfDays,
@@ -15,7 +15,11 @@ class CurrencyChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final calculatorY = CalculatorY(rates: rates);
+    final calculatorY = CalculatorY(
+      rates: rates,
+      defaultMinY: rates?.first.mid ?? 4.5,
+      defaultMaxY: rates?.first.mid ?? 4.75,
+    );
     const textStyle = TextStyle(
       fontSize: 10,
       color: Color(0xFF5E6972),
@@ -52,12 +56,19 @@ class CurrencyChart extends StatelessWidget {
                   sideTitles: SideTitles(
                 showTitles: true,
                 getTitlesWidget: (value, meta) {
-                  if (value.toInt() >= rates.length) {
-                    return const SizedBox();
+                  if (rates != null) {
+                    if (value.toInt() >= rates!.length) {
+                      return const SizedBox();
+                    }
+                    return Text(
+                        _getFormattedDate(rates![value.toInt()].effectiveDate!),
+                        style: textStyle);
+                  } else {
+                    return Text(
+                      "${value.toInt() + 1}.04",
+                      style: textStyle,
+                    );
                   }
-                  return Text(
-                      _getFormattedDate(rates[value.toInt()].effectiveDate!),
-                      style: textStyle);
                 },
               ))),
           gridData: FlGridData(
@@ -84,7 +95,7 @@ class CurrencyChart extends StatelessWidget {
           ),
           lineBarsData: [
             LineChartBarData(
-                spots: _getListOfSpots(rates),
+                spots: rates != null ? _getListOfSpots(rates!) : null,
                 isCurved: true,
                 color: Theme.of(context).primaryColor,
                 barWidth: 4,

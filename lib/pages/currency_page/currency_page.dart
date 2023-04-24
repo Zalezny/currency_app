@@ -31,21 +31,19 @@ class CurrencyPage extends StatelessWidget {
               child: BlocBuilder<CurrencyBloc, CurrencyState>(
                 builder: (context, state) {
                   if (state is CurrencySuccessState) {
-                    return _buildSuccessBody(state.model, context);
+                    return _buildBody(state.model, context);
                   } else if (state is CurrencyFailState) {
-                    return Text(
-                      "test",
-                    );
+                    return _buildBody(null, context);
                   } else {
-                    return Text("test");
+                    return _buildBody(null, context);
                   }
                 },
               ),
             )));
   }
 
-  Widget _buildSuccessBody(CurrencyDto model, BuildContext context) {
-    final List<Rates> rates = model.rates!;
+  Widget _buildBody(CurrencyDto? model, BuildContext context) {
+    final List<Rates>? rates = model?.rates;
     final mediaQuery = MediaQuery.of(context).size;
 
     return Column(
