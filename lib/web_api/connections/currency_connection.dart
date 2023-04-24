@@ -11,7 +11,7 @@ import 'package:http/http.dart';
 class CurrencyConnection {
   final ApiService apiService = GetIt.I<ApiService>();
 
-  Future<CurrencyDto> getCurrency(CodeEnum code) async {
+  Future<CurrencyDto> _getCurrency(CodeEnum code) async {
     final uri = Config.currencyUrl(_codeString(code));
     final Response response = await apiService.makeApiGetRequest(uri);
 
@@ -21,6 +21,16 @@ class CurrencyConnection {
       final Map<String, dynamic> body = json.decode(response.body);
       return CurrencyDto.fromJson(body);
     }
+  }
+
+  Future<List<CurrencyDto>> getCurrenciesList(List<CodeEnum> codes) async {
+    List<CurrencyDto> currenciesList = [];
+
+    for (final code in codes) {
+      currenciesList.add(await _getCurrency(code));
+    }
+
+    return currenciesList;
   }
 
   Future<CurrencyDto> getCurrencyByLast(CodeEnum code, int lastNum) async {

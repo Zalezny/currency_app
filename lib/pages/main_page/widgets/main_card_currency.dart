@@ -6,14 +6,14 @@ class MainCardCurrency extends StatelessWidget {
   final String title;
   final String description;
   final String currencyValue;
-  final String date;
-  const MainCardCurrency(
-      {super.key,
-      required this.iconAsset,
-      required this.title,
-      required this.description,
-      required this.currencyValue,
-      required this.date});
+
+  const MainCardCurrency({
+    super.key,
+    required this.iconAsset,
+    required this.title,
+    required this.description,
+    required this.currencyValue,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +30,7 @@ class MainCardCurrency extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: IntrinsicWidth(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Flexible(
                 flex: 1,
@@ -68,7 +69,7 @@ class MainCardCurrency extends StatelessWidget {
                 ),
               ),
               Flexible(
-                flex: 2,
+                flex: 3,
                 fit: FlexFit.tight,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,

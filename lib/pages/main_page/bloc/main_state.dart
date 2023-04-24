@@ -17,7 +17,7 @@ class MainFailState extends MainState {
 }
 
 class MainSuccessState extends MainState {
-  final CurrencyDto model;
+  final List<CurrencyDto> model;
   MainSuccessState(this.model);
 
   @override

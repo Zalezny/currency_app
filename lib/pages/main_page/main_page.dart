@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:currency_app/enums/code_enum.dart';
 import 'package:currency_app/pages/main_page/bloc/main_bloc.dart';
 import 'package:currency_app/pages/main_page/widgets/main_card_currency.dart';
@@ -18,6 +19,8 @@ class MainPage extends StatefulWidget {
 class _MyHomePageState extends State<MainPage> {
   final CurrencyConnection currencyConnection = GetIt.I<CurrencyConnection>();
 
+  final listOfCurrencies = [CodeEnum.eur, CodeEnum.usd];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,26 +30,54 @@ class _MyHomePageState extends State<MainPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Text("Choose your value"),
-              // MainCardCurrency(
-              //     iconAsset: 'assets/icons/europe_flag_circle.svg',
-              //     title: "EUR",
-              //     description: "Europeanian Union",
-              //     currencyValue: "\$\$\$",
-              //     date: "date")
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
+              ),
+              DefaultTextStyle(
+                style: const TextStyle(
+                  fontSize: 30.0,
+                  fontFamily: 'Roboto',
+                ),
+                child: AnimatedTextKit(
+                  isRepeatingAnimation: false,
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      "Choose your currency",
+                      speed: const Duration(milliseconds: 100),
+                    ),
+                  ],
+                ),
+              ),
               BlocProvider(
                 create: (context) => MainBloc(
                   currencyConnection,
-                  CodeEnum.eur,
+                  listOfCurrencies,
                 )..add(SendMainEvent()),
                 child: BlocBuilder<MainBloc, MainState>(
                   builder: (context, state) {
                     if (state is MainSuccessState) {
                       return ListView.builder(
                         shrinkWrap: true,
-                        itemCount: state.model.rates!.length,
+                        itemCount: state.model.length,
                         itemBuilder: (context, index) {
-                          return Text(state.model.currency!);
+                          final isEuro =
+                              state.model[index].currency!.contains("eur");
+                          return isEuro
+                              ? MainCardCurrency(
+                                  iconAsset:
+                                      'assets/icons/europe_flag_circle.svg',
+                                  title: state.model[index].code!,
+                                  description: "Europeanian Union",
+                                  currencyValue:
+                                      "€${state.model[index].rates!.first.mid!.toStringAsFixed(2)}",
+                                )
+                              : MainCardCurrency(
+                                  iconAsset: 'assets/icons/usa_flag_circle.svg',
+                                  title: state.model[index].code!,
+                                  description: "United States of America",
+                                  currencyValue:
+                                      "\$${state.model[index].rates!.first.mid!.toStringAsFixed(2)}",
+                                );
                         },
                       );
                     } else if (state is MainFailState) {
