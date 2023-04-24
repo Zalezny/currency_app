@@ -1,5 +1,6 @@
 import 'package:currency_app/pages/currency_page/bloc/currency_bloc.dart';
 import 'package:currency_app/pages/currency_page/widgets/currency_chart.dart';
+import 'package:currency_app/pages/currency_page/widgets/currency_table.dart';
 import 'package:currency_app/web_api/connections/currency_connection.dart';
 import 'package:currency_app/web_api/dto/currency_dto.dart';
 import 'package:currency_app/web_api/dto/rates.dart';
@@ -47,11 +48,11 @@ class CurrencyPage extends StatelessWidget {
     final List<Rates> rates = model.rates!;
     final mediaQuery = MediaQuery.of(context).size;
 
-    final styles = TextStyle(fontFamily: 'Roboto', color: Color(0xFF5E6972));
-
     return Column(
       children: [
-        SizedBox(height: mediaQuery.height * 0.03),
+        SizedBox(
+          height: mediaQuery.height * 0.03,
+        ),
         Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
@@ -64,62 +65,13 @@ class CurrencyPage extends StatelessWidget {
                 rates: rates,
               )),
         ),
-        SizedBox(height: mediaQuery.height * 0.03),
-        Expanded(
-          child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              color: Theme.of(context).cardColor,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 8.0,
-                        right: 8.0,
-                        left: 8.0,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("DATE", style: styles),
-                          Text("RATE", style: styles),
-                        ],
-                      ),
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: ListView.separated(
-                        reverse: true,
-                        separatorBuilder: (context, index) => Divider(
-                          color: Colors.grey.withOpacity(0.3),
-                        ),
-                        physics: const ScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: model.rates!.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(rates[index].effectiveDate!,
-                                    style: styles),
-                                Text(rates[index].mid.toString(),
-                                    style: styles),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    )
-                  ],
-                ),
-              )),
+        SizedBox(
+          height: mediaQuery.height * 0.03,
         ),
-        SizedBox(height: mediaQuery.height * 0.03)
+        CurrencyTable(rates: rates),
+        SizedBox(
+          height: mediaQuery.height * 0.03,
+        )
       ],
     );
   }
