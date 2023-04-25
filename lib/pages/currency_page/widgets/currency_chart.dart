@@ -9,13 +9,12 @@ class CurrencyChart extends StatelessWidget {
   final List<Rates>? rates;
   final double defaultMinY;
   final double defaultMaxY;
-  const CurrencyChart({
-    super.key,
-    required this.valueOfDays,
-    required this.rates,
-    required this.defaultMinY,
-    required this.defaultMaxY
-  });
+  const CurrencyChart(
+      {super.key,
+      required this.valueOfDays,
+      required this.rates,
+      required this.defaultMinY,
+      required this.defaultMaxY});
 
   @override
   Widget build(BuildContext context) {
@@ -99,17 +98,35 @@ class CurrencyChart extends StatelessWidget {
           ),
           lineBarsData: [
             LineChartBarData(
+                gradient: _getLinearGradient(
+                  [
+                    Theme.of(context).primaryColor,
+                    const Color(0xFFFD7A28),
+                  ],
+                ),
                 spots: rates != null ? _getListOfSpots(rates!) : null,
                 isCurved: true,
-                color: Theme.of(context).primaryColor,
                 barWidth: 4,
                 belowBarData: BarAreaData(
                   show: true,
-                  color: Theme.of(context).primaryColor.withOpacity(0.3),
+                  gradient: _getLinearGradient(
+                    [
+                      Theme.of(context).primaryColor.withOpacity(0.3),
+                      const Color(0xFFFD7A28).withOpacity(0.3)
+                    ],
+                  ),
                 )),
           ],
         ),
       ),
+    );
+  }
+
+  LinearGradient _getLinearGradient(List<Color> colors) {
+    return LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: colors,
     );
   }
 

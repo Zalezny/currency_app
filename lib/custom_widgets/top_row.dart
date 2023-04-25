@@ -24,9 +24,22 @@ class TopRow extends StatelessWidget {
                 left: 8.0,
                 right: 16.0,
               ),
-              child: Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: Theme.of(context).primaryColor,
+              child: ShaderMask(
+                blendMode: BlendMode.srcATop,
+                shaderCallback: (bounds) => RadialGradient(
+                    center: Alignment.topCenter,
+                    stops: [
+                      .5,
+                      1
+                    ],
+                    colors: [
+                      Theme.of(context).primaryColor,
+                      Color(0xFFFF7D2C)
+                    ]).createShader(bounds),
+                child: Icon(
+                  Icons.arrow_back_ios_new_rounded,
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
             ),
           ),
