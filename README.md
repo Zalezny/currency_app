@@ -49,6 +49,8 @@ Aplikacja została podzielona na dwa ekrany: pierwszy pokazujący obecny kurs wa
 
 Chart został zrobiony za pomocą dependency fl_chart. Została stworzona osobna klasa "CalculatorY" do obliczania zakresu osi Y oraz możliwości ustawienia defaultowych wartości (w przypadku braku internetu), które różnią się co do waluty. 
 
+Zostały także zaimplementowane ikonki aplikacji dla Androida
+
 ## Kompatybilność
 
 Aplikacja została sprawdzona na wersji API32 i API33. Aplikacja została także przetestowana na emulatorze IPhone 13 Pro na iOS 15.2
