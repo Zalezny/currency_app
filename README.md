@@ -51,7 +51,7 @@ Chart został zrobiony za pomocą dependency fl_chart. Została stworzona osobna
 
 ## Kompatybilność
 
-Aplikacja została sprawdzona na wersji API32 i API33. Dodatkowo jest testowana na IOS'a
+Aplikacja została sprawdzona na wersji API32 i API33. Aplikacja została także przetestowana na emulatorze IPhone 13 Pro na iOS 15.2
 
 ## Libraries
 
