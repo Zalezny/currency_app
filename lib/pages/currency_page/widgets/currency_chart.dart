@@ -98,35 +98,17 @@ class CurrencyChart extends StatelessWidget {
           ),
           lineBarsData: [
             LineChartBarData(
-                gradient: _getLinearGradient(
-                  [
-                    Theme.of(context).primaryColor,
-                    const Color(0xFFFD7A28),
-                  ],
-                ),
                 spots: rates != null ? _getListOfSpots(rates!) : null,
                 isCurved: true,
+                color: Theme.of(context).primaryColor,
                 barWidth: 4,
                 belowBarData: BarAreaData(
                   show: true,
-                  gradient: _getLinearGradient(
-                    [
-                      Theme.of(context).primaryColor.withOpacity(0.3),
-                      const Color(0xFFFD7A28).withOpacity(0.3)
-                    ],
-                  ),
+                  color: Theme.of(context).primaryColor.withOpacity(0.3),
                 )),
           ],
         ),
       ),
-    );
-  }
-
-  LinearGradient _getLinearGradient(List<Color> colors) {
-    return LinearGradient(
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-      colors: colors,
     );
   }
 
