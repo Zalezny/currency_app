@@ -6,12 +6,13 @@ class NetworkDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context).size;
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       backgroundColor: Theme.of(context).cardColor,
       insetPadding: const EdgeInsets.symmetric(horizontal: 18),
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.35,
+        height: mediaQuery.height * 0.35,
         width: double.infinity,
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -29,7 +30,7 @@ class NetworkDialog extends StatelessWidget {
             ),
             Image.asset(
               'assets/images/grave_net.png',
-              height: MediaQuery.of(context).size.height * 0.18,
+              height: mediaQuery.height * 0.18,
             ),
             ElevatedButton(
               onPressed: () {

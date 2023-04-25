@@ -1,3 +1,4 @@
+import 'package:currency_app/colors/app_colors.dart';
 import 'package:currency_app/web_api/dto/rates.dart';
 import 'package:flutter/material.dart';
 
@@ -7,9 +8,9 @@ class CurrencyTableItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const styles = TextStyle(
+    final styles = TextStyle(
       fontFamily: 'Roboto',
-      color: Color(0xFF5E6972),
+      color: AppColors.grey,
     );
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

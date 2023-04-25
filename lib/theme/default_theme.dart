@@ -1,33 +1,34 @@
+import 'package:currency_app/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class DefaultTheme {
-  final _primarySwatch = const MaterialColor(
+  final _primarySwatch = MaterialColor(
     0xFFFF5300,
     <int, Color>{
-      50: Color(0xFFFFF3E0),
-      100: Color(0xFFFFE0B2),
-      200: Color(0xFFFFCC80),
-      300: Color(0xFFFFB74D),
-      400: Color(0xFFFFA726),
-      500: Color(0xFFFF5300),
-      600: Color(0xFFE65100),
-      700: Color(0xFFD84315),
-      800: Color(0xFFBF360C),
-      900: Color(0xFF3E2723),
+      50: AppColors.o_50,
+      100: AppColors.o_100,
+      200: AppColors.o_200,
+      300: AppColors.o_300,
+      400: AppColors.o_400,
+      500: AppColors.o_500,
+      600: AppColors.o_600,
+      700: AppColors.o_700,
+      800: AppColors.o_800,
+      900: AppColors.o_900,
     },
   );
 
   ThemeData buildThemeData() {
     return ThemeData(
-      primaryColor: const Color(0xFFFF5300),
+      primaryColor: AppColors.o_500,
       colorScheme: ColorScheme.fromSwatch(
         primarySwatch: _primarySwatch,
-        backgroundColor: const Color(0xFF121212),
-        cardColor: const Color(0xFF1E2630),
-        errorColor: const Color(0xFFB00020),
+        backgroundColor: AppColors.b_12,
+        cardColor: AppColors.cardColor,
+        errorColor: AppColors.redDark,
       ),
-      cardColor: const Color(0xFF1E2630),
-      scaffoldBackgroundColor: const Color(0xFF121212),
+      cardColor: AppColors.cardColor,
+      scaffoldBackgroundColor: AppColors.b_12,
     );
   }
 }

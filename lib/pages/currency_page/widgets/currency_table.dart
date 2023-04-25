@@ -1,3 +1,4 @@
+import 'package:currency_app/colors/app_colors.dart';
 import 'package:currency_app/pages/currency_page/widgets/currency_table_item.dart';
 import 'package:currency_app/pages/currency_page/widgets/currency_table_item_shimmers.dart';
 import 'package:currency_app/web_api/dto/rates.dart';
@@ -10,10 +11,10 @@ class CurrencyTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final reversedRates = rates?.reversed.toList() ?? null;
-    const styles = TextStyle(
+    final reversedRates = rates?.reversed.toList();
+    final styles = TextStyle(
       fontFamily: 'Roboto',
-      color: Color(0xFF5E6972),
+      color: AppColors.grey,
     );
     return Expanded(
       child: Card(
@@ -33,7 +34,7 @@ class CurrencyTable extends StatelessWidget {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       Text("DATE", style: styles),
                       Text("RATE", style: styles),
                     ],

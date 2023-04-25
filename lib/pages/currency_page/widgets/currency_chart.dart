@@ -1,3 +1,4 @@
+import 'package:currency_app/colors/app_colors.dart';
 import 'package:currency_app/pages/currency_page/classes/calculate_y.dart';
 import 'package:currency_app/web_api/dto/rates.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -23,9 +24,9 @@ class CurrencyChart extends StatelessWidget {
       defaultMinY: rates?.first.mid ?? defaultMinY,
       defaultMaxY: rates?.first.mid ?? defaultMaxY,
     );
-    const textStyle = TextStyle(
+    final textStyle = TextStyle(
       fontSize: 10,
-      color: Color(0xFF5E6972),
+      color: AppColors.grey,
     );
     return Padding(
       padding: const EdgeInsets.only(
