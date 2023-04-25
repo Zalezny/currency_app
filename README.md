@@ -59,7 +59,7 @@ Aplikacja została sprawdzona na wersji API32 i API33. Aplikacja została także
 
 - bloc - management states of network
 - get_it - dependency injection of service and connection classes
-- http - reuqest 'GET' to api 
+- http - request 'GET' to api 
 - flutter_bloc - widgets to implement bloc in Flutter
 - flutter_svg - show svg picture
 - animated_text_kit - animated text on the start page
