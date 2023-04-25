@@ -1,4 +1,4 @@
 enum CodeEnum {
+  eur,
   usd,
-  eur
 }

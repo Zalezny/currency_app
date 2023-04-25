@@ -1,4 +1,4 @@
-import 'package:currency_app/enums/code_enum.dart';
+import 'package:currency_app/utils/currency_code.dart';
 
 class Config {
   static String get _basicUrl {

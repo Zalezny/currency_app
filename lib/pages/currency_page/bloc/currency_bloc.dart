@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:currency_app/utils/currency_code.dart';
 import 'package:currency_app/web_api/connections/currency_connection.dart';
 import 'package:currency_app/web_api/dto/currency_dto.dart';
 import 'package:meta/meta.dart';
@@ -8,7 +9,7 @@ part 'currency_state.dart';
 
 class CurrencyBloc extends Bloc<CurrencyEvent, CurrencyState> {
   final CurrencyConnection currencyConnection;
-  final String code;
+  final CurrencyCode code;
   final int lastNum;
 
   CurrencyBloc(this.currencyConnection, this.code, this.lastNum)

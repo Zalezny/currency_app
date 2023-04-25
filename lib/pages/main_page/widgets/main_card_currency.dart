@@ -1,3 +1,4 @@
+import 'package:currency_app/utils/currency_code.dart';
 import 'package:currency_app/pages/currency_page/currency_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,6 +8,7 @@ class MainCardCurrency extends StatelessWidget {
   final String title;
   final String description;
   final String currencyValue;
+  final CurrencyCode code;
 
   const MainCardCurrency({
     super.key,
@@ -14,6 +16,7 @@ class MainCardCurrency extends StatelessWidget {
     required this.title,
     required this.description,
     required this.currencyValue,
+    required this.code,
   });
 
   @override
@@ -25,7 +28,7 @@ class MainCardCurrency extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (ctx) => CurrencyPage(
-              codeString: title,
+              code: code,
             ),
           ),
         );

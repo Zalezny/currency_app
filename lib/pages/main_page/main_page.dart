@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:currency_app/utils/code_enum.dart';
 import 'package:currency_app/custom_widgets/network_dialog.dart';
-import 'package:currency_app/enums/code_enum.dart';
+import 'package:currency_app/utils/currency_code.dart';
 import 'package:currency_app/pages/main_page/bloc/main_bloc.dart';
 import 'package:currency_app/pages/main_page/widgets/main_card_currency.dart';
 import 'package:currency_app/pages/main_page/widgets/main_card_currency_shimmer.dart';
@@ -26,9 +27,9 @@ class _MyHomePageState extends State<MainPage> {
   StreamSubscription<ConnectivityResult>? subscription;
   MainBloc? mainBloc;
 
-  final listOfCurrencies = [
-    CodeEnum.eur,
-    CodeEnum.usd,
+  final List<CurrencyCode> listOfCurrencies = [
+    CurrencyCode(code: CodeEnum.eur),
+    CurrencyCode(code: CodeEnum.usd),
   ];
 
   @override
@@ -99,9 +100,7 @@ class _MyHomePageState extends State<MainPage> {
                         shrinkWrap: true,
                         itemCount: state.model.length,
                         itemBuilder: (context, index) {
-                          final isEuro =
-                              state.model[index].currency!.contains("eur");
-                          return isEuro
+                          return listOfCurrencies[index].isEuro
                               ? MainCardCurrency(
                                   iconAsset:
                                       'assets/icons/europe_flag_circle.svg',
@@ -109,6 +108,7 @@ class _MyHomePageState extends State<MainPage> {
                                   description: "Europeanian Union",
                                   currencyValue:
                                       "€${state.model[index].rates!.first.mid!.toStringAsFixed(2)}",
+                                  code: listOfCurrencies[index],
                                 )
                               : MainCardCurrency(
                                   iconAsset: 'assets/icons/usa_flag_circle.svg',
@@ -116,6 +116,7 @@ class _MyHomePageState extends State<MainPage> {
                                   description: "United States of America",
                                   currencyValue:
                                       "\$${state.model[index].rates!.first.mid!.toStringAsFixed(2)}",
+                                  code: listOfCurrencies[index],
                                 );
                         },
                       );
