@@ -58,7 +58,7 @@ Aplikacja została sprawdzona na wersji API32 i API33. Aplikacja została także
 ## Libraries
 
 - bloc - management states of network
-- get_it - dependency injection of service and connection classes
+- get_it with injectable - dependency injection of service and connection classes
 - http - request 'GET' to api 
 - flutter_bloc - widgets to implement bloc in Flutter
 - flutter_svg - show svg picture
