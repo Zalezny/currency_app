@@ -1,5 +1,7 @@
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class ApiService {
   Future<http.Response> makeApiGetRequest(String uri) async {
     return http.get(
