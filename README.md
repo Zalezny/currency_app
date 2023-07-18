@@ -1,6 +1,6 @@
 # currency_app
 
-[![en](https://img.shields.io/badge/lang-en-yellow.svg)](https://github.com/Zalezny/currency_app/edit/main/README.md)
+[![en](https://img.shields.io/badge/lang-en-yellow.svg)](https://github.com/Zalezny/currency_app/blob/main/README.md)
 [![pl](https://img.shields.io/badge/lang-pl-red.svg)](https://github.com/Zalezny/currency_app/blob/main/README.pl.md)
 
 Prepare a Flutter application consisting of:
