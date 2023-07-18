@@ -1,5 +1,7 @@
 # currency_app
 
+[![en](https://img.shields.io/badge/lang-en-yellow.svg)](https://github.com/Zalezny/currency_app/edit/readmes/README.md)
+
 Przygotuj aplikację we Flutterze składającą się z:
 
 Panelu wyboru waluty:
