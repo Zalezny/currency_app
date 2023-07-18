@@ -1,3 +1,5 @@
+[![pl](https://img.shields.io/badge/lang-pl-red.svg)](https://github.com/jonatasemidio/multilanguage-readme-pattern/blob/master/README.md)
+
 # currency_app
 
 Przygotuj aplikację we Flutterze składającą się z:
