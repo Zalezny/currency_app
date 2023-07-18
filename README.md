@@ -3,60 +3,60 @@
 [![en](https://img.shields.io/badge/lang-en-yellow.svg)](https://github.com/Zalezny/currency_app/edit/readmes/README.md)
 [![pl](https://img.shields.io/badge/lang-pl-red.svg)](https://github.com/Zalezny/currency_app/blob/readmes/README.pl.md)
 
-Przygotuj aplikację we Flutterze składającą się z:
+Prepare a Flutter application consisting of:
 
-Panelu wyboru waluty:
+Currency selection panel:
 
-a. Waluty do wyboru: EUR, USD.
+a. Currency options: EUR, USD.
 
-b. Po wyborze waluty otwiera się okno szczegółów danej waluty.
+b. Upon selecting a currency, a window with details of that currency opens.
 
- Integracji z publicznym API NBP (http://api.nbp.pl/):
+Integration with the public NBP API (http://api.nbp.pl/):
 
-a. Pobieranie kursów średnich wybranej waluty wraz z datą obowiązywania kursu.
+a. Retrieving the average exchange rates of the selected currency along with the date of validity.
 
-b. Listy kursów wybranej waluty z ostatnich 30 dni.
+b. Lists of exchange rates of the selected currency from the last 30 days.
 
-Widok szczegółów
+Details view:
 
-- Okno prezentujące
- 
-   a. Bieżący kurs średni wybranej waluty do PLN
- 
-   b. Informację o dacie obowiązywania kursu
- 
- - Możliwość wyświetlenia tabeli kursów z ostatnich 30 dni
+Window presenting:
 
-Dodatkowo na + możliwość przedstawienia danych na wykresie
+a. Current average exchange rate of the selected currency to PLN.
 
-Aplikacja powinna się budować pod przynajmniej jedno środowisko Android lub iOS. 
+b. Information about the date of validity of the exchange rate.
 
-Na co zwrócimy uwagę przy ocenie?
+Ability to display a table of exchange rates from the last 30 days.
+
+Additionally, as a plus, the ability to present data on a chart.
+
+The application should be built for at least one Android or iOS environment.
+
+What will be considered during evaluation?
 
 UX/UI
-Stabilność działania
+Stability of operation
 
-Czystość i czytelność kodu
+Cleanliness and readability of code
 
-Na + wykorzystanie repozytorium  
+As a plus, utilization of a repository.
 
-## Przedstawienie aplikacji
+## Presentationn
 
-Aplikacja została podzielona na dwa ekrany: pierwszy pokazujący obecny kurs waluty EUR, USD. Zostały tutaj zaimplementowane zależnie od zwracanego stanu z architektury Bloc (Loading, Success, Failed) pojawia się odpowiednio : Shimmersy (bez przycisku "Refresh"), UI zgodne z danymi pobranymi z API, Shimmersy z przyciskiem "Refresh"
+The application has been divided into two screens: the first one displaying the current exchange rates for EUR and USD currencies. Depending on the state returned from the Bloc architecture (Loading, Success, Failed), the following elements appear accordingly: Shimmers (without the "Refresh" button), UI consistent with the data fetched from the API, Shimmers with the "Refresh" button.
 
  <img src="https://user-images.githubusercontent.com/65240240/234219014-47dc5097-c84d-454b-b555-95ce640b466f.png" alt="main_page" style="width: 300px;"><img src="https://user-images.githubusercontent.com/65240240/234219022-35aa7168-f4a6-4990-9a2c-5f940443e942.png" alt="main_page_without_internet" style="width: 300px;"><img src="https://user-images.githubusercontent.com/65240240/234219000-45b50d5e-e547-4d16-bb8d-165f004a601b.png" alt="network_dialog" style="width: 300px;">
  
- Po wybraniu waluty przechodzi się na stronę z wykresem oraz tabelą z ostatnich 30 dni. Tutaj także zostały zastosowane shimmery do ładowania treści oraz dialog pokazujący się po odłączeniu od internetu. Pierwszy screen pokazuje stronę, a drugi gdy nie ma internetu (oczywiście shimmery są animowane). Po kliknięciu na dany punkt na wykresie pojawia się kreska wskazująca datę oraz pokazuje się informacja o wartości danego punktu
+After selecting a currency, you are redirected to a page displaying a chart and a table of the currency's performance over the past 30 days. Here, shimmers are also used to load the content, and a dialog appears when the internet connection is lost. The first screen shows the page, while the second screen appears when there is no internet connection (of course, the shimmers are animated). When you click on a specific point on the chart, a line indicating the date appears, along with information about the value of that particular point.
  
  <img src="https://user-images.githubusercontent.com/65240240/234222134-5c673c62-554c-4122-998a-70904d72791f.png" alt="currency_page" style="width: 300px;"><img src="https://user-images.githubusercontent.com/65240240/234224721-2f12ec56-3e89-4099-be38-23002868d3f2.png" alt="currency_page__wtih_dot" style="width: 300px;"><img src="https://user-images.githubusercontent.com/65240240/234222154-590b4c2b-8de1-40b6-a9b5-bbc73563b261.png" alt="currency_page_without_internet" style="width: 300px;">
 
-Chart został zrobiony za pomocą dependency fl_chart. Została stworzona osobna klasa "CalculatorY" do obliczania zakresu osi Y oraz możliwości ustawienia defaultowych wartości (w przypadku braku internetu), które różnią się co do waluty. 
+The chart was created using the fl_chart dependency. A separate class called "CalculatorY" was implemented to calculate the range of the Y-axis and allow setting default values (in case of no internet connection) that vary depending on the currency.
 
-Zostały także zaimplementowane ikonki aplikacji dla Androida
+The application icons have also been implemented for Android
 
-## Kompatybilność
+## Compatibility
 
-Aplikacja została sprawdzona na wersji API32 i API33. Aplikacja została także przetestowana na emulatorze IPhone 13 Pro na iOS 15.2
+The application has been tested on API32 and API33 versions. Additionally, the application has been tested on the iPhone 13 Pro emulator running iOS 15.2.
 
 ## Libraries
 
