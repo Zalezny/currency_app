@@ -1,4 +1,4 @@
-[![pl](https://img.shields.io/badge/lang-pl-red.svg)](https://github.com/jonatasemidio/multilanguage-readme-pattern/blob/master/README.md)
+[![pl](https://img.shields.io/badge/lang-pl-red.svg)](https://github.com/Zalezny/currency_app/blob/readmes/README.pl.md)
 
 # currency_app
 
